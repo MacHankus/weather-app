@@ -1,0 +1,26 @@
+{
+    "app":{
+        "port":5000,
+        "name": "DEV_FLASK_APP"
+
+    },
+    "app_config":{
+        "secret": "yoZoqBcC9tpa-kVVRC_o0GkhMjk5G-1LQpxGe-zePjY",
+        "jwt_secret_key": "c7cf2cf5d3079a6556a4c44ee39d2c0f894b721646def743b247574c606c",
+        "jwt_access_token_expires": 300,
+        "jwt_refresh_token_expires": 3000,
+        "jwt_cookie_secure": true,
+        "jwt_cookie_csrf_protect": true,
+        "jwt_token_location": ["cookies"],
+        "jwt_csrf_in_cookies":true,
+        "jwt_refresh_cookie_path":"/auth/refresh",
+        "jwt_access_cookie_path":"/"
+    },
+    "database":{
+        "uri":"postgresql+psycopg2://{username}:{password}@localhost:5432/weather_db",
+        "credentials_file":"E:\\Projects\\weather-app\\credentials_dev.json"
+    },
+    "logs":{
+        "path":"E:\\Projects\\weather-app\\logs"
+    }
+}
