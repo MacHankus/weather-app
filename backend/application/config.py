@@ -38,6 +38,12 @@ class DatabaseSchema(Schema):
     uri: fields.Field = fields.Str(required=True)
     credentials_file: fields.Field = fields.Str()
 
+class SMTPSchema(Schema):
+    host: fields.Field = fields.Str(required=True)
+    port: fields.Field = fields.Integer(required=True)
+    user: fields.Field = fields.Str(required=True)
+    password: fields.Field = fields.Str(required=True)
+    addr: fields.Field = fields.Str(required=True)
 
 class LogsSchema(Schema):
     path: fields.Field = fields.Str(required=True)
@@ -48,7 +54,7 @@ class ConfigSchema(Schema):
     app_config: fields.Field = fields.Nested(AppConfigSchema, required=True)
     database: fields.Field = fields.Nested(DatabaseSchema, required=True)
     logs: fields.Field = fields.Nested(LogsSchema, required=True)
-
+    smtp: fields.Field = fields.Nested(SMTPSchema, required=True) 
 
 class Config():
     """Class for loading config. Implemented as singleton.

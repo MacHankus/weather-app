@@ -7,6 +7,7 @@ import datetime as dt
 from datetime import timezone
 from flask_jwt_extended import set_access_cookies, create_access_token, get_jwt_identity, get_jwt
 from utils.jwt.cookies import set_access_time_cookie
+from utils.mail import MailConfig, MailServer
 
 app = Flask(__name__)
 
@@ -14,12 +15,16 @@ config.Config.load_config(app)
 config.Config.init_app(app)
 
 #extensions
+mailconfig = MailConfig(config.Config.config['smtp'])
+mailserver = MailServer(mailconfig)
+
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
-api = Api(doc="/docs")
+api = Api(doc="/docs", prefix="/api")
 
 from resources import namespaces
 from resources import auth
+from resources import user
 from resources import error_handlers
 from database.connection import Session
 
@@ -27,6 +32,7 @@ from database.connection import Session
 
 #namespaces
 api.add_namespace(namespaces.auth_namespace)
+api.add_namespace(namespaces.user_namespace)
 
 #others
 @app.teardown_appcontext

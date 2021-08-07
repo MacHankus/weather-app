@@ -77,11 +77,12 @@ module.exports = function (_env, argv) {
         ].filter(Boolean)
     },
     {
+        devtool: isDevelopment && "cheap-module-source-map",
         entry: {
             server: "./src/server.tsx"
         },
         output: {
-            filename: "[name].bundle.js",
+            filename: "[name]s.bundle.js",
             path: path.resolve(__dirname, "dist")
         },
         "target": "node",

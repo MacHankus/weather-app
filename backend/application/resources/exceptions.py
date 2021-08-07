@@ -54,9 +54,31 @@ class BadCredentials(CustomException):
         return resp, self.code, self.headers
 
 
-class BadDataProvided(BaseValidationException, CustomException):
+class MissingParameters(CustomException):
     code = HTTPStatus.BAD_REQUEST
     description = "Incorrect data provided."
+    details = []
+    headers = {'Content-Type': 'application/json'}
+
+    def get_response(self):
+        resp = {"message": self.description,
+                "code": self.code, "details": self.details}
+        return resp, self.code, self.headers
+
+class MissingResource(CustomException):
+    code = HTTPStatus.NOT_FOUND
+    description = "Resource doesn't exist."
+    details = []
+    headers = {'Content-Type': 'application/json'}
+
+    def get_response(self):
+        resp = {"message": self.description,
+                "code": self.code, "details": self.details}
+        return resp, self.code, self.headers
+
+class InvalidDataProvided(CustomException):
+    code = HTTPStatus.UNPROCESSABLE_ENTITY
+    description = "Provided parameters are incorrect."
     details = []
     headers = {'Content-Type': 'application/json'}
 

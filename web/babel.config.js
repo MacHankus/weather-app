@@ -18,7 +18,8 @@ module.exports = {
         }
       ],
       "@babel/plugin-syntax-dynamic-import",
-      "@babel/plugin-proposal-class-properties"
+      "@babel/plugin-proposal-class-properties",
+      ["styled-components", { "ssr": true }]
     ],
     env: {
       production: {

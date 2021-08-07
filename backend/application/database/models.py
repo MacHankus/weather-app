@@ -1,16 +1,17 @@
+from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.schema import Column
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
 from database.connection import Base
-from sqlalchemy import BigInteger, Text, String, DateTime, Date, Integer
+from sqlalchemy import BigInteger, Text, String, DateTime, Date, Integer, Boolean
 from app import bcrypt
 from marshmallow.validate import Email
-
+import datetime as dt
 
 class StandardTable():
     id = Column(BigInteger, primary_key=True)
-    mod_date = Column(DateTime)
-    create_date = Column(DateTime)
+    mod_date = Column(DateTime, default=dt.datetime.now())
+    create_date = Column(DateTime, server_default=text("current_timestamp"))
 
 
 class User(StandardTable, Base):
@@ -23,12 +24,11 @@ class User(StandardTable, Base):
 
     """
     __tablename__ = "user_credential"
-    username = Column(String(1000))
-    _password = Column("password", String(1000))
-    email = Column(String(100))
-    id = Column(BigInteger, primary_key=True)
-    mod_date = Column(DateTime)
-    create_date = Column(DateTime)
+    username = Column(String(1000), nullable=False)
+    _password = Column("password", String(1000), nullable=False)
+    email = Column(String(100), nullable=False)
+    confirmed = Column(Boolean(), nullable=False, default=False)
+    confirmation_key = Column(String(100), nullable=False)
     @hybrid_property
     def password(self):
         return self._password
@@ -44,3 +44,4 @@ class User(StandardTable, Base):
     def val_email(self, name, val):
         validator = Email()
         validator(val)
+        return val
