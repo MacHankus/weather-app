@@ -9,5 +9,5 @@ module.exports = {
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "setupFilesAfterEnv": ["./src/__tests__/setupTests.ts"]
+    "setupFilesAfterEnv": ["./src/__tests__/mirageSetup.ts"],
   }

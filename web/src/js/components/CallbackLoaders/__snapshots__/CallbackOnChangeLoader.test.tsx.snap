@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CallbackInputLoader simple input render. Match snapshot with initial render. 1`] = `
+<div
+  class="MuiFormControl-root MuiTextField-root"
+>
+  <div
+    class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+  >
+    <input
+      aria-invalid="false"
+      class="MuiInputBase-input MuiInput-input"
+      id="id-input"
+      type="text"
+      value=""
+    />
+  </div>
+  
+</div>
+`;

@@ -13,7 +13,7 @@
         "jwt_cookie_csrf_protect": true,
         "jwt_token_location": ["cookies"],
         "jwt_csrf_in_cookies":true,
-        "jwt_refresh_cookie_path":"/auth/refresh",
+        "jwt_refresh_cookie_path":"/api/auth/refresh",
         "jwt_access_cookie_path":"/"
     },
     "database":{
@@ -22,5 +22,12 @@
     },
     "logs":{
         "path":"E:\\Projects\\weather-app\\logs"
+    },
+    "smtp":{
+        "host":"smtp.gmail.com",
+        "port":587,
+        "user": "weatherapp.mh@gmail.com",
+        "password":"wphpziaenrecemnx",
+        "addr":"weatherapp.mh@gmail.com"
     }
 }

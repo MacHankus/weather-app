@@ -6,7 +6,9 @@ import { Provider } from "react-redux"
 import store from "./js/redux/store/store"
 
 
-import "regenerator-runtime/runtime";
+import "regenerator-runtime/runtime"
+
+require('mapbox-gl/dist/mapbox-gl.css')
 
 require("./scss/main/main.scss");
 
