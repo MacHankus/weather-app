@@ -63,7 +63,7 @@ export function axiosRefresh(url: string, config: AxiosRequestConfig) {
                 console.log(error.response.data)
                 console.log(error.response.status)
                 console.log(error.response.headers)
-                if (error.response.statusCode === 401) throw new FetchAuthenticationError(error.response, "Can't refresh token. Please sign in again.")
+                if (error.response.status === 401) throw new FetchAuthenticationError(error.response, "Can't refresh token. Please sign in again.")
                 throw new FetchFailResponse(error.response)
             } else if (error.request) {
                 // The request was made but no response was received
@@ -105,7 +105,7 @@ export function axiosSignIn({ username, password, email }: SignInUser, url: stri
                 console.log(error.response.data)
                 console.log(error.response.status)
                 console.log(error.response.headers)
-                if (error.response.statusCode === 400) throw new FetchIncorrectDataError(error.response, "Incorrect data provided.")
+                if (error.response.status === 400) throw new FetchIncorrectDataError(error.response, "Incorrect data provided.")
                 throw new FetchFailResponse(error.response)
             } else if (error.request) {
                 // The request was made but no response was received
@@ -144,7 +144,7 @@ export function axiosSignInConfirmation({ username, confirmation_key }: Confirma
                 console.log(error.response.data)
                 console.log(error.response.status)
                 console.log(error.response.headers)
-                if (error.response.statusCode === 422) throw new FetchIncorrectDataError(error.response, "Incorrect token.")
+                if (error.response.status === 422) throw new FetchIncorrectDataError(error.response, "Incorrect token.")
                 throw new FetchFailResponse(error.response)
             } else if (error.request) {
                 // The request was made but no response was received

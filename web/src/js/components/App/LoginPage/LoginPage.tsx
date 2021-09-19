@@ -63,43 +63,46 @@ export const LoginPage = () => {
         e.preventDefault()
         sendCredentials()
     }
-    
-    const goToSignIn = ()=>{
+
+    const goToSignIn = () => {
         history.push('/signin')
     }
 
     return (<Box height="100%" width="100%">
         <FullGrid container justifyContent="center" alignItems="center">
             <Grid item>
-                <Box p={2}>
-                    <form id="id-login-form" onSubmit={onSubmitHandle}>
-                        <Grid container spacing={3} direction="column">
-                            <Grid item>
-                                <TextField required id="id-username" name="username" label="Username" placeholder="" />
+                <Paper elevation={2}>
+                    <Box p={2}>
+                        <form id="id-login-form" onSubmit={onSubmitHandle}>
+                            <Grid container direction="column">
+                                <Grid item>
+                                    <TextField required id="id-username" name="username" label="Username" placeholder="" />
+                                </Grid>
+                                <br />
+                                <Grid item>
+                                    <TextField required id="id-password" name="password" label="Password" type="password" />
+                                </Grid>
+                                <br />
+                                <Grid item justifyContent="center">
+                                    <Typography variant="body2" color="error">
+                                        {errors}
+                                    </Typography>
+                                </Grid>
+                                <Grid container alignItems="center" justifyContent="flex-end">
+                                    <Button color="primary" variant="contained" type="submit">
+                                        submit
+                                    </Button>
+                                </Grid>
+                                <br />
+                                <Grid item justifyContent="flex-start">
+                                    <Button color="primary" onClick={goToSignIn}>
+                                        signin
+                                    </Button>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <TextField required id="id-password" name="password" label="Password" type="password" />
-                            </Grid>
-                            <br />
-                            <Grid item justifyContent="center">
-                                <Typography variant="body2" color="error">
-                                    {errors}
-                                </Typography>
-                            </Grid>
-                            <Grid container alignItems="center" justifyContent="flex-end">
-                                <Button color="primary" variant="contained" type="submit">
-                                    submit
-                                </Button>
-                            </Grid>
-                            <br/>
-                            <Grid item justifyContent="flex-start">
-                                <Button color="primary" onClick={goToSignIn}>
-                                    signin
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </form>
-                </Box>
+                        </form>
+                    </Box>
+                </Paper>
             </Grid>
         </FullGrid>
     </Box>)

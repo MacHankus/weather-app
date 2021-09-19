@@ -30,17 +30,13 @@ class ProtectedRoute extends Route<ProtectedRoutePropsType> {
         permissionGiven: null
     }
     async componentDidMount() {
-        console.log('ProtectedRoute componentDidMount.')
         await this.checkLogged()
 
     }
     async componentDidUpdate() {
-        console.log('ProtectedRoute componentDidUpdate.')
-        console.log(this.state)
         if (this.state.permissionGiven === null) await this.checkLogged()
     }
     async checkLogged() {
-        console.log('Start checkLogged.')
         const isLogged = await checkIsUserLogged()
         console.log(`isLogged: ${isLogged}`)
 

@@ -22,6 +22,7 @@ export default function ({ injection, styleSheets, jsfile }: IndexHTMLProps) {
         <body>
             <div id="app" dangerouslySetInnerHTML={{ __html: injection }} className=""></div>
             <script type="text/javascript" src={"/public/js/"+jsfile}></script>
+
         </body>
     </html>
 }

@@ -32,7 +32,7 @@ export const SignInConfirmToken = ({ changeConfirmState, formState, confirmState
         try {
             console.log('await')
             const data = await confirmation({username:formState?.username?.value as string, confirmation_key: confirmState?.value as string})
-            changeVisibility()
+            history.push('/signin/success')
             return
         } catch (err) {
             if(err instanceof FetchIncorrectDataError){

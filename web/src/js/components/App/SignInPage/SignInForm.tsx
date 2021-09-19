@@ -43,7 +43,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({ formState, changeFormSta
         try {
             const data = await signin({ password: formState.password?.value || "", username: formState.username?.value || "", email: formState.email?.value || "" })
 
-            changeVisibility()
+            history.push('/signin/confirm')
         } catch (err) {
             if (err instanceof FetchIncorrectDataError) {
 

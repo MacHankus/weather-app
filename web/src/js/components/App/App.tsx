@@ -6,7 +6,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useLocation
 } from "react-router-dom";
 import ProtectedRoute from '../Route/ProtectedRoute'
 import { LoginPage } from '../App/LoginPage/LoginPage'
@@ -37,7 +38,7 @@ const App = () => {
                 <Route exact path="/error">
                     <div>error</div>
                 </Route>
-                <Route exact path="/signin">
+                <Route path="/signin">
                     <SignInPage/>
                 </Route>
                 <ProtectedRoute path="/" component={<Main/>}/>

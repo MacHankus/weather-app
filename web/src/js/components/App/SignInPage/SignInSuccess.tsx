@@ -1,7 +1,8 @@
 import { Grid, makeStyles, Paper, Typography, Box } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { classes } from "istanbul-lib-coverage";
+import { useHistory } from "react-router";
 
 
 const useStyles = makeStyles({
@@ -12,8 +13,19 @@ const useStyles = makeStyles({
 })
 
 export const SignInSuccess = () => {
-
+    
+    const history = useHistory()
     const classes = useStyles()
+
+    useEffect(() => {
+        moveToLogIn()
+    }, [])
+    
+    const moveToLogIn = ()=>{
+        setTimeout(()=>{
+            history.push('/login')
+        },1500)
+    }
 
     return (
         <Paper elevation={2}>

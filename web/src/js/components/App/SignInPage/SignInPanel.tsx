@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from "react"
 import posed, { PoseGroup } from "react-pose"
+import { Route, Switch, useHistory, useLocation } from "react-router"
 import { SignInConfirmToken } from "./SignInConfirmToken"
 import { SignInForm } from "./SignInForm"
 import { SignInSuccess } from './SignInSuccess'
@@ -41,7 +42,7 @@ export const SignInPanel: () => SignInPanelReturns = function () {
     const [formState, setFormState] = useState<SignInFormState>({})
     const [confirmState, setConfirmState] = useState<BasicInfo>({})
     const [visibility, setVisibility] = useState<number>(0)
-
+    const location = useLocation()
     const changeFormState = (name: string, formPart: SignInFormState) => {
         setFormState((prevState) => ({
             ...prevState,
@@ -78,14 +79,12 @@ export const SignInPanel: () => SignInPanelReturns = function () {
     return (<>
         <PoseGroup preEnterPose="preEnter">
             {
-                visibility === 0 && <SweepElement key={0}>
-                    <SignInForm formState={formState} changeFormState={changeFormState} changeVisibility={changeVisibility} checkFormEmptyness={checkFormEmptyness} />
-                </SweepElement> ||
-                visibility === 1 && <SweepElement key={1}>
-                    <SignInConfirmToken changeConfirmState={changeConfirmState} formState={formState} confirmState={confirmState} changeVisibility={changeVisibility}/>
-                </SweepElement> ||
-                visibility === 2 && <SweepElement key={2}>
-                    <SignInSuccess/>
+                <SweepElement key={location.pathname}>
+                    <Switch>
+                        <Route exact path="/signin" render={()=><SignInForm formState={formState} changeFormState={changeFormState} changeVisibility={changeVisibility} checkFormEmptyness={checkFormEmptyness} />}/>
+                        <Route exact path="/signin/confirm" render={()=><SignInConfirmToken changeConfirmState={changeConfirmState} formState={formState} confirmState={confirmState} changeVisibility={changeVisibility}/>}/>
+                        <Route exact path="/signin/success" render={()=><SignInSuccess/>}/>
+                    </Switch>
                 </SweepElement>
             }
         </PoseGroup>
